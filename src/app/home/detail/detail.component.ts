@@ -4,28 +4,29 @@ import { DBService } from './../../db.service';
 import { Location } from '@angular/common';
 import { HomeService, Article } from './../home.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, AfterViewInit, OnDestroy} from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { PreviewEditorComponent } from '../preview-editor/preview-editor.component';
 
-import Viewer from 'tui-editor/dist/tui-editor-Viewer';
+// import Viewer from 'tui-editor/dist/tui-editor-Viewer';
+import Editor from 'tui-editor';
 import { MediaMatcher } from '@angular/cdk/layout';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class DetailComponent implements OnInit, AfterViewInit {
+export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChild('preview') preview: ElementRef;
+  @ViewChild('preview', {static: false}) preview: ElementRef;
 
   public id: number;
   public articleId: string;
   public link: string;
   public article: Article;
 
-  public previewEdit: Viewer;
+  public previewEdit: Editor;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -33,7 +34,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
   styleSelected = {
     fontSize: null,
     backgroundColor: null
-  }
+  };
 
   constructor(
     private homeService: HomeService,
@@ -74,11 +75,11 @@ export class DetailComponent implements OnInit, AfterViewInit {
       //   height: '100%',
       //   width: '100%'
       // });
-      this.previewEdit = new Viewer({
+      this.previewEdit = new Editor({
         el: this.preview.nativeElement,
         initialValue: this.article.md,
         height: '100%',
-        width: '100%'
+        // width: '100%'
       });
       // if(this.article.md == null && this.article.html != null) { // md 为null但是html存在则显示
       //   (this.preview.nativeElement as Element).innerHTML = this.article.html;
@@ -91,7 +92,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
 
   async ngAfterViewInit() {
     if (this.articleId != null) {
-      let styleSelected = await this.dbService.get('detail-page-style');
+      const styleSelected = await this.dbService.get('detail-page-style');
       if (styleSelected != null) {
         this.styleSelected = styleSelected;
       }
@@ -132,7 +133,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
     // 避免默认处理和向外扩散
     event.stopPropagation();
     event.preventDefault();
-    if (!window.confirm('确定删除')) return;
+    if (!window.confirm('确定删除')) { return; }
     try {
       await this.homeService.removeArticle(this.articleId);
       this.snackBar.open('删除文章成功');
