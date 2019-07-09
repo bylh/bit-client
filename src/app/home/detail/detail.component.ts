@@ -9,9 +9,13 @@ import { Observable } from 'rxjs';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { PreviewEditorComponent } from '../preview-editor/preview-editor.component';
 
-// import Viewer from 'tui-editor/dist/tui-editor-Viewer';
-import Editor from 'tui-editor';
+import Viewer from 'tui-editor/dist/tui-editor-Viewer';
+// import Editor from 'tui-editor';
 import { MediaMatcher } from '@angular/cdk/layout';
+
+import 'tui-editor/dist/tui-editor-contents.css'; // editor content
+import 'highlight.js/styles/github.css'; // code block highlight
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -26,7 +30,8 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
   public link: string;
   public article: Article;
 
-  public previewEdit: Editor;
+  // public previewEdit: Editor;
+  public viewerMd: Viewer;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -75,16 +80,20 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
       //   height: '100%',
       //   width: '100%'
       // });
-      this.previewEdit = new Editor({
+      // this.previewEdit = new Editor({
+      //   el: this.preview.nativeElement,
+      //   initialValue: this.article.md,
+      //   height: '100%',
+      //   // width: '100%'
+      // });
+      this.viewerMd = new Viewer({
         el: this.preview.nativeElement,
-        initialValue: this.article.md,
-        height: '100%',
-        // width: '100%'
-      });
+        initialValue: this.article.html
+    });
       // if(this.article.md == null && this.article.html != null) { // md 为null但是html存在则显示
       //   (this.preview.nativeElement as Element).innerHTML = this.article.html;
       // }
-      this.previewEdit.setHtml(this.article.html);
+      // this.previewEdit.setHtml(this.article.html);
 
     } catch (err) {
     }
@@ -125,7 +134,8 @@ export class DetailComponent implements OnInit, AfterViewInit, OnDestroy {
       if (article != null) { // 取消返回null
         // (this.preview.nativeElement as Element).innerHTML = result;
         this.article = article;
-        this.previewEdit.setMarkdown(this.article.md);
+        this.viewerMd.setValue(this.article.html);
+        // this.previewEdit.setMarkdown(this.article.md);
       }
     });
   }

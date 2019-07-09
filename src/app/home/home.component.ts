@@ -24,7 +24,7 @@ export interface Tile {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('home') home: ElementRef;
+  @ViewChild('home', {static: false}) home: ElementRef;
 
   refreshSubject: Subject<string> = new Subject<string>();
   articles: Array<Article>;

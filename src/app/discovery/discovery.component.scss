@@ -3,7 +3,7 @@
     .seg-viewport {
       height: 100%;
 
-      /deep/ .cdk-virtual-scroll-content-wrapper {
+      ::ng-deep .cdk-virtual-scroll-content-wrapper {
         width: 100%;
       }
 

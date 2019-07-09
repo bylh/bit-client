@@ -1,5 +1,5 @@
-
 import { FormControl } from '@angular/forms';
+
 import { PageTags } from './../../../common/define';
 import { HomeService, Article } from './../home.service';
 
@@ -7,7 +7,9 @@ import { HomeService, Article } from './../home.service';
 import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthService } from '../../auth.service';
+
 import Editor from 'tui-editor';
+
 import 'tui-editor/dist/tui-editor-extScrollSync'; // extensions 同步滚动
 import 'tui-editor/dist/tui-editor-extChart'; // extensions 图表支持
 import 'tui-editor/dist/tui-editor-extUML'; // extensions 流程图支持
@@ -21,12 +23,12 @@ import 'tui-color-picker/dist/tui-color-picker';  // extensions 颜色选择器
   styleUrls: ['./preview-editor.component.scss']
 })
 export class PreviewEditorComponent implements OnInit {
-  @ViewChild('editSection') editElementRef: ElementRef;
+  @ViewChild('editSection', {static: true}) editElementRef: ElementRef;
   public editor: Editor;
   public switch: boolean = true;
 
 
-  selectedTagsControl = new FormControl();
+  selectedTagsControl = new FormControl;
 
   allTags: Array<string> = PageTags;
 
@@ -51,7 +53,7 @@ export class PreviewEditorComponent implements OnInit {
         exts: ['scrollSync', 'colorSyntax', 'uml'], // 同步滚动
         language: 'zh',
         height: '100%',
-        width: '100%'
+        // width: '100%' // update8
       });
       if (this.data.md != null) {
         this.editor.setMarkdown(this.data.md);

@@ -12,8 +12,8 @@ import { environment } from '../../../environments/environment';
 })
 export class ChatComponent implements OnInit {
   messageContainer
-  @ViewChild('messageContainer') msgConRef: ElementRef;
-  @ViewChild('messageList') msgRef: ElementRef;
+  @ViewChild('messageContainer', {static: false}) msgConRef: ElementRef;
+  @ViewChild('messageList', {static: false}) msgRef: ElementRef;
 
   socket: SocketIOClient.Socket;
   inputMessage: string;

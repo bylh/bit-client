@@ -41,7 +41,7 @@
           flex: 0 1 auto;
         }
 
-        /deep/ .mat-tab-links {
+        ::ng-deep .mat-tab-links {
           justify-content: space-around;
         }
 
@@ -109,11 +109,11 @@
           justify-content: center;
           display: none;
 
-          /deep/ nav {
+          ::ng-deep nav {
             flex-grow: 1; // 占满整行
           }
 
-          /deep/ .mat-tab-links {
+          ::ng-deep .mat-tab-links {
             // 要加/deep/，否则不起作用，参考链接https://stackoverflow.com/questions/43690291/how-to-overwrite-angular-2-material-styles
             justify-content: space-around;
             letter-spacing: normal; // pure-g改变了此属性，不知道为啥要改这个属性
@@ -123,7 +123,7 @@
         .page {
           min-height: 0; // 兼容firefox edge，否则无法使用滚动条
           height: 100%;
-          flex: 1 1 auto; // 剩余空间高度，可压缩 
+          flex: 1 1 auto; // 剩余空间高度，可压缩
           justify-content: center;
 
           .page-container {

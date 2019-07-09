@@ -13,7 +13,7 @@ import { ChatComponent } from './chat/chat.component';
   styleUrls: ['./tools.component.scss']
 })
 export class ToolsComponent implements OnInit {
-  @ViewChild('bylhChat') chatInstance: ChatComponent;
+  @ViewChild('bylhChat', {static: false}) chatInstance: ChatComponent;
   gateKey: string;
   gateSecret: string;
   coinName: string;

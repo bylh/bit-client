@@ -13,7 +13,7 @@
 
     .article-viewport {
       height: 360px;
-      /deep/ .cdk-virtual-scroll-content-wrapper {
+      ::ng-deep .cdk-virtual-scroll-content-wrapper {
         width: 100%;
       }
     }
