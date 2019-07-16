@@ -25,12 +25,16 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-
+  // TODO 可能会影响定制主题
+  background: url(https://fqdygq.dm.files.1drv.com/y4mdtjYeXSqZ5lZvD0SCg7Vw2s-B-Ldmh6AWVX6aNIdZMw2bOEjh5DvRQ8x-QgDsNpHwkZH_v5nzL3Ut5a8zko2MS2I7T9PztfiyZxj8vjop17oBJzx9kYChp_kkGHgll893RT8H07gawx-EfRC7oZ5qX8KpKBJwQTp3nklLSzSR88j3IxwrpA8gvQ7panBFbsEUURRHuzODrujizngww_h0g?width=27&height=15&cropmode=none);
   .bylh-page-base {
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
+    // TODO 可能会影响定制主题
+    background: url(https://fqdygq.dm.files.1drv.com/y4mdtjYeXSqZ5lZvD0SCg7Vw2s-B-Ldmh6AWVX6aNIdZMw2bOEjh5DvRQ8x-QgDsNpHwkZH_v5nzL3Ut5a8zko2MS2I7T9PztfiyZxj8vjop17oBJzx9kYChp_kkGHgll893RT8H07gawx-EfRC7oZ5qX8KpKBJwQTp3nklLSzSR88j3IxwrpA8gvQ7panBFbsEUURRHuzODrujizngww_h0g?width=27&height=15&cropmode=none);
+
   }
 
   .bylh-sub-page-base {
@@ -40,6 +44,9 @@ body {
     // 绝对定位布局div宽高自适应，而不是充满
     left: 0;
     right: 0;
+    // TODO 可能会影响定制主题
+    background: url(https://fqdygq.dm.files.1drv.com/y4mdtjYeXSqZ5lZvD0SCg7Vw2s-B-Ldmh6AWVX6aNIdZMw2bOEjh5DvRQ8x-QgDsNpHwkZH_v5nzL3Ut5a8zko2MS2I7T9PztfiyZxj8vjop17oBJzx9kYChp_kkGHgll893RT8H07gawx-EfRC7oZ5qX8KpKBJwQTp3nklLSzSR88j3IxwrpA8gvQ7panBFbsEUURRHuzODrujizngww_h0g?width=27&height=15&cropmode=none);
+
   }
 
   .bylh-header {
