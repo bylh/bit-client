@@ -39,8 +39,4 @@ testem.log
 Thumbs.db
 
 # bylh
-src/config.ts
-src/environments/environment.ts
-src/environments/environment.dev.ts
-src/environments/environment.prod.ts
 /extra
