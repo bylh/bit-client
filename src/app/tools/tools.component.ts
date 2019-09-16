@@ -33,7 +33,10 @@ export class ToolsComponent implements OnInit {
         this.chatInstance.close();
       }
     }, 1000 * 60 * 30);
+
+
   }
+
   async getMarkerList() {
     try {
       this.coins = await this.toolsService.getMarkerList();

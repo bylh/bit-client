@@ -1,0 +1,13 @@
+<div [appPage]="{ sub: true }" class="bylh-tools-news">
+  <div class="bylh-header">
+      <div class="bylh-left-icon">
+          <mat-icon (click)="back()" color="primary">arrow_back_ios</mat-icon>
+        </div>
+    <div class="bylh-title">各大头条</div>
+  </div>
+  <div>
+    <div *ngFor="let item of news">
+      {{ item.title }}
+    </div>
+  </div>
+</div>

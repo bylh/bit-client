@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MovieComponent } from './movie/movie.component';
 import { ToolsComponent } from './tools.component';
+import { NewsComponent } from './news/news.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,9 @@ const routes: Routes = [
     children: [{
       path: 'movie',
       component: MovieComponent
+    }, {
+      path: 'news',
+      component: NewsComponent
     }]
   }
 ];

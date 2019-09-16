@@ -8,6 +8,20 @@ export class ToolsService {
 
   constructor() { }
 
+  // 获取各网站头条
+  async getNews() {
+    try {
+      const res = await axios.request({
+        url: `${environment.NestServerUrl}/news`,
+        method: 'get',
+        params: {}
+      });
+      return res.data as Array<Object>;
+    } catch (err) {
+      throw err;
+    }
+  }
+
   async getMovies() {
     try {
       const res = await axios.request({
@@ -20,7 +34,7 @@ export class ToolsService {
       console.log('res:', res.data);
       // return res.data.map(value => {
       //   return {
-          
+
       //   };
       // });
       return res.data.subjects;
