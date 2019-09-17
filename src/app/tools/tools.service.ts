@@ -12,7 +12,7 @@ export class ToolsService {
   async getNewsTypes() {
     try {
       const res = await axios.request({
-        url: `${environment.NestServerUrl}/news/types`,
+        url: `${environment.NestServerUrl}/news/types/`,
         method: 'get',
         params: {}
       });
@@ -25,7 +25,7 @@ export class ToolsService {
   async getNews(id: String) {
     try {
       const res = await axios.request({
-        url: `${environment.NestServerUrl}/news`,
+        url: `${environment.NestServerUrl}/news/`,
         method: 'get',
         params: {id}
       });
