@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "serve": "ng serve",
+    "lite-server": "lite-server --baseDir dist/web",
     "start": "ng build --prod && lite-server --baseDir dist/web",
     "start-analyzer": "ng build --prod --build-optimizer --stats-json && lite-server --baseDir dist/web",
     "start-dev": "npx ng build && lite-server --baseDir dist/web",
@@ -12,7 +13,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy-bit": "scp -P 26685 -r dist/web root@95.169.7.111:/home/bylh/",
+    "deploy-bit": "scp -P 22 -r dist root@34.84.20.92:/home/bylicx/pro/bit-client/dist",
     "extra-pull": "git subtree pull --prefix=extra  https://github.com/bylh/extra.git master",
     "extra-push": "git subtree push --prefix=extra  https://github.com/bylh/extra.git master"
   },
