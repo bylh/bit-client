@@ -8,13 +8,30 @@
   <div class="bylh-content">
     <mat-chip-list>
       <mat-chip
-      *ngFor="let item of newsTypes"
-      (click)="getNews(item.id)"
-      >{{ item.title }}</mat-chip>
+        *ngFor="let item of newsTypes.slice(0, 10)"
+        [ngClass]="currentId === item.id ? 'active' : 'normal'"
+        (click)="getNews(item.id)"
+        >{{ item.title }}</mat-chip
+      >
+      <ng-container *ngIf="showMore">
+        <mat-chip
+          *ngFor="let item of newsTypes.slice(10, newsTypes.length - 1)"
+          [ngClass]="currentId === item.id ? 'active' : 'normal'"
+          (click)="getNews(item.id)"
+          >{{ item.title }}</mat-chip
+        >
+      </ng-container>
+      <mat-chip
+        class="control-panel-button"
+        color="warn"
+        (click)="controlPanel()"
+        >{{ showMore ? '收起' : '更多' }}</mat-chip
+      >
     </mat-chip-list>
     <mat-list>
       <mat-list-item *ngFor="let item of news">
-          <a matLine [href]="item.url">{{ item.title }}</a>
+        <a matLine [href]="item.url" target="_blank">{{ item.title }}</a>
+        <mat-divider></mat-divider>
       </mat-list-item>
     </mat-list>
   </div>

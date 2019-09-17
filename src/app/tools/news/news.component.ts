@@ -10,6 +10,9 @@ export class NewsComponent implements OnInit {
 
   news: Array<Object> = [];
   newsTypes: Array<Object> = [];
+  currentId: String  = null;
+  showMore: Boolean = false;
+
   constructor(private toolsService: ToolsService, private location: Location) { }
 
   async ngOnInit() {
@@ -19,7 +22,12 @@ export class NewsComponent implements OnInit {
   }
 
   async getNews(id: String) {
+    this.currentId = id;
     this.news = await this.toolsService.getNews(id);
+  }
+
+  controlPanel() {
+    this.showMore = !this.showMore;
   }
 
   back() {

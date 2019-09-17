@@ -1,3 +1,15 @@
 .bylh-tools-news {
-
+  a {
+    text-decoration: none;
+  }
+  .active {
+    // color: burlywood;
+    background: yellowgreen;
+  }
+  .normal {
+    color: unset;
+  }
+  .control-panel-button {
+    color: blue;
+  }
 }
