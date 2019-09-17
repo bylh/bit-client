@@ -9,12 +9,17 @@ import { Location } from '@angular/common';
 export class NewsComponent implements OnInit {
 
   news: Array<Object> = [];
-
+  newsTypes: Array<Object> = [];
   constructor(private toolsService: ToolsService, private location: Location) { }
 
   async ngOnInit() {
-    this.news = await this.toolsService.getNews();
+    this.newsTypes = await this.toolsService.getNewsTypes();
+    await this.getNews((this.newsTypes[0] as any) .id);
     console.log('this.news', this.news);
+  }
+
+  async getNews(id: String) {
+    this.news = await this.toolsService.getNews(id);
   }
 
   back() {

@@ -8,13 +8,26 @@ export class ToolsService {
 
   constructor() { }
 
+  // 获取网站类型
+  async getNewsTypes() {
+    try {
+      const res = await axios.request({
+        url: `${environment.NestServerUrl}/news/types`,
+        method: 'get',
+        params: {}
+      });
+      return res.data as Array<Object>;
+    } catch (err) {
+      throw err;
+    }
+  }
   // 获取各网站头条
-  async getNews() {
+  async getNews(id: String) {
     try {
       const res = await axios.request({
         url: `${environment.NestServerUrl}/news`,
         method: 'get',
-        params: {}
+        params: {id}
       });
       return res.data as Array<Object>;
     } catch (err) {
