@@ -6,10 +6,10 @@
       <div class="title" (click)="goHome()">{{ title }}</div>
       <div class="nav">
         <nav mat-tab-nav-bar backgroundColor="primary" color="primary">
-          <a mat-tab-link routerLink="/tabs/home" routerLinkActive #homeTab="routerLinkActive" [active]="homeTab.isActive">首页</a>
-          <a mat-tab-link routerLink="/tabs/discovery" routerLinkActive #discoveryTab="routerLinkActive" [active]="discoveryTab.isActive">发现</a>
-          <a mat-tab-link routerLink="/tabs/tools" routerLinkActive #toolsTab="routerLinkActive" [active]="toolsTab.isActive">工具</a>
-          <a mat-tab-link routerLink="/tabs/profile" routerLinkActive #profileTab="routerLinkActive" [active]="profileTab.isActive">个人</a>
+          <a mat-tab-link routerLink="/tabs/home" routerLinkActive #homeTab="routerLinkActive" *active="homeTab.isActive">首页</a>
+          <a mat-tab-link routerLink="/tabs/discovery" routerLinkActive #discoveryTab="routerLinkActive" *active="discoveryTab.isActive">发现</a>
+          <a mat-tab-link routerLink="/tabs/tools" routerLinkActive #toolsTab="routerLinkActive" *active="toolsTab.isActive">工具</a>
+          <a mat-tab-link routerLink="/tabs/profile" routerLinkActive #profileTab="routerLinkActive" *active="profileTab.isActive">个人</a>
         </nav>
       </div>
 
@@ -51,10 +51,10 @@
         <!-- ================模块三 路由页面部分=====================-->
         <div class="nav pure-g">
           <nav mat-tab-nav-bar backgroundColor="primary" color="primary">
-            <a mat-tab-link routerLink="/tabs/home" routerLinkActive #homeTab="routerLinkActive" [active]="homeTab.isActive">首页</a>
-            <a mat-tab-link routerLink="/tabs/discovery" routerLinkActive #discoveryTab="routerLinkActive" [active]="discoveryTab.isActive">发现</a>
-            <a mat-tab-link routerLink="/tabs/tools" routerLinkActive #toolsTab="routerLinkActive" [active]="toolsTab.isActive">工具</a>
-            <a mat-tab-link routerLink="/tabs/profile" routerLinkActive #profileTab="routerLinkActive" [active]="profileTab.isActive">个人</a>
+            <a mat-tab-link routerLink="/tabs/home" routerLinkActive #homeTab="routerLinkActive" *active="homeTab.isActive">首页</a>
+            <a mat-tab-link routerLink="/tabs/discovery" routerLinkActive #discoveryTab="routerLinkActive" *active="discoveryTab.isActive">发现</a>
+            <a mat-tab-link routerLink="/tabs/tools" routerLinkActive #toolsTab="routerLinkActive" *active="toolsTab.isActive">工具</a>
+            <a mat-tab-link routerLink="/tabs/profile" routerLinkActive #profileTab="routerLinkActive" *active="profileTab.isActive">个人</a>
           </nav>
         </div>
         <div class="page">

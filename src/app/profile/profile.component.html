@@ -1,4 +1,4 @@
-<div [appPage] class="bylh-profile">
+<div [appPage]="{sub: false }" class="bylh-profile">
   <div class="bylh-content">
     <div class="form-container" *ngIf="!userId">
       <form [formGroup]="form" (ngSubmit)="submitForm()">
