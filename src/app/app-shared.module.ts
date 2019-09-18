@@ -1,21 +1,55 @@
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { ScrollDispatchModule } from '@angular/cdk/scrolling';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { OverlayModule, OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {OverlayModule, OverlayContainer, FullscreenOverlayContainer} from '@angular/cdk/overlay';
 
 import {
-  MatInputModule, MatButtonModule, MatGridListModule, MatFormFieldModule, MatIconModule,
-  MatToolbarModule, MatExpansionModule, MatMenuModule, MatCardModule, MatTabsModule, MatDividerModule,
-  MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS, MatTableModule, MatDialogModule, MatListModule, MatCheckboxModule, MatRadioModule, MatOptionModule, MatSelectModule, MAT_DIALOG_DEFAULT_OPTIONS, MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule, MatSidenavModule, MatChipsModule, MatProgressBarModule
+  MatInputModule,
+  MatButtonModule,
+  MatGridListModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatExpansionModule,
+  MatMenuModule,
+  MatCardModule,
+  MatTabsModule,
+  MatDividerModule,
+  MatSnackBarModule,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+  MatTableModule,
+  MatDialogModule,
+  MatListModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatOptionModule,
+  MatSelectModule,
+  MAT_DIALOG_DEFAULT_OPTIONS,
+  MatButtonToggleModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSidenavModule,
+  MatChipsModule,
+  MatProgressBarModule
 } from '@angular/material';
 
-import { SafePipe, ArraySpreadPipe } from './pipe';
-import { PageDirective } from './page.directive';
-import { BylhSearchComponent } from './widgets/bylh-search/bylh-search.component';
+// ant
+import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import zh from '@angular/common/locales/zh';
+
+registerLocaleData(zh);
+
+import {SafePipe, ArraySpreadPipe} from './pipe';
+import {PageDirective} from './page.directive';
+import {BylhSearchComponent} from './widgets/bylh-search/bylh-search.component';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -48,6 +82,9 @@ import { BylhSearchComponent } from './widgets/bylh-search/bylh-search.component
     MatSelectModule,
     MatChipsModule,
     MatProgressBarModule,
+    // ant
+    NgZorroAntdModule,
+    HttpClientModule
   ],
   declarations: [
     SafePipe,
@@ -93,6 +130,10 @@ import { BylhSearchComponent } from './widgets/bylh-search/bylh-search.component
     MatChipsModule,
     MatProgressBarModule,
 
+    // ant
+    NgZorroAntdModule,
+    HttpClientModule,
+
     // CDK
     ScrollDispatchModule,
     DragDropModule,
@@ -102,9 +143,11 @@ import { BylhSearchComponent } from './widgets/bylh-search/bylh-search.component
     BylhSearchComponent
   ],
   providers: [
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2000, verticalPosition: 'top' }, },
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true } },
-    { provide: OverlayContainer, useClass: FullscreenOverlayContainer },
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000, verticalPosition: 'top'},},
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}},
+    {provide: OverlayContainer, useClass: FullscreenOverlayContainer},
+    { provide: NZ_I18N, useValue: zh_CN }
   ]
 })
-export class AppSharedModule { }
+export class AppSharedModule {
+}

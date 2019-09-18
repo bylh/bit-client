@@ -43,6 +43,7 @@
     "js-cookie": "^2.2.1",
     "lite-server": "^2.5.4",
     "localforage": "^1.7.3",
+    "ng-zorro-antd": "^8.3.0",
     "purecss": "^1.0.1",
     "rxjs": "^6.5.3",
     "socket.io-client": "^2.2.0",
