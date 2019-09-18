@@ -2,7 +2,7 @@
 // 主题
 // @import "~@angular/material/prebuilt-themes/purple-green.css";
 // @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 // @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 // purecss 先后次序很关键
 @import '~purecss/build/tables-min.css';
@@ -19,6 +19,22 @@
 @import '~tui-color-picker/dist/tui-color-picker.css';
 @import '~highlight.js/styles/github.css'; // code block highlight
 
+// ant style
+.ant-layout-header {
+  background: #7dbcea;
+  color: #fff;
+}
+.ant-layout-content {
+  overflow: auto;
+}
+.ant-layout-footer {
+  background: #7dbcea;
+  color: #fff;
+}
+
+.ant-page-header-content {
+  overflow: auto;
+}
 html,
 body {
   height: 100%;
@@ -34,7 +50,6 @@ body {
     flex-direction: column;
     // TODO 可能会影响定制主题
     background: url(https://fqdygq.dm.files.1drv.com/y4mdtjYeXSqZ5lZvD0SCg7Vw2s-B-Ldmh6AWVX6aNIdZMw2bOEjh5DvRQ8x-QgDsNpHwkZH_v5nzL3Ut5a8zko2MS2I7T9PztfiyZxj8vjop17oBJzx9kYChp_kkGHgll893RT8H07gawx-EfRC7oZ5qX8KpKBJwQTp3nklLSzSR88j3IxwrpA8gvQ7panBFbsEUURRHuzODrujizngww_h0g?width=27&height=15&cropmode=none);
-
   }
 
   .bylh-sub-page-base {
@@ -47,7 +62,6 @@ body {
     right: 0;
     // TODO 可能会影响定制主题
     background: url(https://fqdygq.dm.files.1drv.com/y4mdtjYeXSqZ5lZvD0SCg7Vw2s-B-Ldmh6AWVX6aNIdZMw2bOEjh5DvRQ8x-QgDsNpHwkZH_v5nzL3Ut5a8zko2MS2I7T9PztfiyZxj8vjop17oBJzx9kYChp_kkGHgll893RT8H07gawx-EfRC7oZ5qX8KpKBJwQTp3nklLSzSR88j3IxwrpA8gvQ7panBFbsEUURRHuzODrujizngww_h0g?width=27&height=15&cropmode=none);
-
   }
 
   .bylh-header {
@@ -97,7 +111,6 @@ body {
     // opacity: 0.8;
     // filter: alpha(opacity=80);
   }
-
 
   .te-toolbar-section,
   .tui-editor-defaultUI-toolbar {

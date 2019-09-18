@@ -1,51 +1,74 @@
 <div appPage="{ sub: true }" class="bylh-tools-news">
-  <div class="bylh-header">
-    <div class="bylh-left-icon">
-      <mat-icon (click)="back()" color="primary">arrow_back_ios</mat-icon>
-    </div>
-    <div class="bylh-title">各大头条</div>
-  </div>
-  <div class="bylh-content">
-    <div *ngIf="newsTypes && newsTypes.length > 0">
-      <nz-tag
-        class="tag"
-        *ngFor="let item of newsTypes.slice(0, 10)"
-        [nzChecked]="currentId === item.id "
-        (click)="getNews(item.id)">
-        {{ item.title }}
-      </nz-tag>
-      <ng-container *ngIf="showMore">
+  <nz-layout>
+    <nz-page-header
+      nzTitle="网站头条"
+      nzBackIcon
+      (nzBack)="back()"
+    ></nz-page-header>
+    <!-- <nz-header> -->
+
+    <!-- <nz-page-header nzTitle="网站头条" nzBackIcon (nzBack)="back()">
+
+          </nz-page-header> -->
+    <!-- <div class="bylh-header">
+            <div class="bylh-left-icon">
+              <mat-icon (click)="back()" color="primary">arrow_back_ios</mat-icon>
+            </div>
+            <div class="bylh-title">各大头条</div>
+          </div> -->
+    <!-- <nz-page-header-title (click)="back()"
+            ><i nz-icon nzType="left" nzTheme="outline"></i
+            >&nbsp;&nbsp;网站头条</nz-page-header-title
+          > -->
+    <!-- </nz-header> -->
+    <!-- <nz-content></nz-content> -->
+    <nz-page-header-content>
+      <div *ngIf="newsTypes && newsTypes.length > 0">
         <nz-tag
           class="tag"
-          *ngFor="let item of newsTypes.slice(10, newsTypes.length - 1)"
-          [nzChecked]="currentId === item.id "
-          (click)="getNews(item.id)">
+          *ngFor="let item of newsTypes.slice(0, 10)"
+          [nzChecked]="currentId === item.id"
+          (click)="getNews(item.id)"
+        >
           {{ item.title }}
         </nz-tag>
-      </ng-container>
-      <nz-tag
-        class="tag"
-        [nzColor]="showMore ? 'geekblue' : 'lime'"
-        (click)="controlPanel()">
-        {{ showMore ? '收起' : '更多' }}
-      </nz-tag>
-    </div>
-    <div class="list-container">
-      <!--[nzHeader]="'当前热点'"-->
-      <!--[nzFooter]="'已经到底部了'"-->
-      <nz-list
-      >
-        <nz-list-item
-          *ngFor="let item of news">
-          <a matLine [href]="item.url" target="_blank">{{ item.title }}</a>
-        </nz-list-item>
-      </nz-list>
-    </div>
-    <!--<mat-list>-->
+        <ng-container *ngIf="showMore">
+          <nz-tag
+            class="tag"
+            *ngFor="let item of newsTypes.slice(10, newsTypes.length - 1)"
+            [nzChecked]="currentId === item.id"
+            (click)="getNews(item.id)"
+          >
+            {{ item.title }}
+          </nz-tag>
+        </ng-container>
+        <nz-tag
+          class="tag"
+          [nzColor]="showMore ? 'geekblue' : 'lime'"
+          (click)="controlPanel()"
+        >
+          {{ showMore ? '收起' : '更多' }}
+        </nz-tag>
+      </div>
+      <div class="list-container">
+        <!--[nzHeader]="'当前热点'"-->
+        <!--[nzFooter]="'已经到底部了'"-->
+        <nz-list>
+          <nz-list-item *ngFor="let item of news">
+            <a matLine [href]="item.url" target="_blank">{{ item.title }}</a>
+          </nz-list-item>
+        </nz-list>
+      </div>
+      <!--<mat-list>-->
       <!--<mat-list-item *ngFor="let item of news">-->
-        <!--<a matLine [href]="item.url" target="_blank">{{ item.title }}</a>-->
-        <!--<mat-divider></mat-divider>-->
+      <!--<a matLine [href]="item.url" target="_blank">{{ item.title }}</a>-->
+      <!--<mat-divider></mat-divider>-->
       <!--</mat-list-item>-->
-    <!--</mat-list>-->
-  </div>
+      <!--</mat-list>-->
+    </nz-page-header-content>
+    <!-- <nz-page-header-footer>test</nz-page-header-footer> -->
+    <!-- <nz-footer>
+      you know nothing
+    </nz-footer> -->
+  </nz-layout>
 </div>
