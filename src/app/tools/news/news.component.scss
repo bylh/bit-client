@@ -2,14 +2,11 @@
   a {
     text-decoration: none;
   }
-  .active {
-    // color: burlywood;
-    background: yellowgreen;
+  .tag {
+    margin: 3px;
+    font-size: 15px;
   }
-  .normal {
-    color: unset;
-  }
-  .control-panel-button {
-    color: blue;
+  .list-container {
+    padding: 10px;
   }
 }

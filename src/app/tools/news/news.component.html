@@ -6,35 +6,46 @@
     <div class="bylh-title">各大头条</div>
   </div>
   <div class="bylh-content">
-    <button nz-button nzType="primary">Primary</button>
-
-    <mat-chip-list>
-      <mat-chip
+    <div *ngIf="newsTypes && newsTypes.length > 0">
+      <nz-tag
+        class="tag"
         *ngFor="let item of newsTypes.slice(0, 10)"
-        [ngClass]="currentId === item.id ? 'active' : 'normal'"
-        (click)="getNews(item.id)"
-        >{{ item.title }}</mat-chip
-      >
+        [nzChecked]="currentId === item.id "
+        (click)="getNews(item.id)">
+        {{ item.title }}
+      </nz-tag>
       <ng-container *ngIf="showMore">
-        <mat-chip
+        <nz-tag
+          class="tag"
           *ngFor="let item of newsTypes.slice(10, newsTypes.length - 1)"
-          [ngClass]="currentId === item.id ? 'active' : 'normal'"
-          (click)="getNews(item.id)"
-          >{{ item.title }}</mat-chip
-        >
+          [nzChecked]="currentId === item.id "
+          (click)="getNews(item.id)">
+          {{ item.title }}
+        </nz-tag>
       </ng-container>
-      <mat-chip
-        class="control-panel-button"
-        color="warn"
-        (click)="controlPanel()"
-        >{{ showMore ? '收起' : '更多' }}</mat-chip
+      <nz-tag
+        class="tag"
+        [nzColor]="showMore ? 'geekblue' : 'lime'"
+        (click)="controlPanel()">
+        {{ showMore ? '收起' : '更多' }}
+      </nz-tag>
+    </div>
+    <div class="list-container">
+      <!--[nzHeader]="'当前热点'"-->
+      <!--[nzFooter]="'已经到底部了'"-->
+      <nz-list
       >
-    </mat-chip-list>
-    <mat-list>
-      <mat-list-item *ngFor="let item of news">
-        <a matLine [href]="item.url" target="_blank">{{ item.title }}</a>
-        <mat-divider></mat-divider>
-      </mat-list-item>
-    </mat-list>
+        <nz-list-item
+          *ngFor="let item of news">
+          <a matLine [href]="item.url" target="_blank">{{ item.title }}</a>
+        </nz-list-item>
+      </nz-list>
+    </div>
+    <!--<mat-list>-->
+      <!--<mat-list-item *ngFor="let item of news">-->
+        <!--<a matLine [href]="item.url" target="_blank">{{ item.title }}</a>-->
+        <!--<mat-divider></mat-divider>-->
+      <!--</mat-list-item>-->
+    <!--</mat-list>-->
   </div>
 </div>
