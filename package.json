@@ -13,7 +13,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy-bit": "scp -P 22 -r dist root@34.84.20.92:/home/bylicx/pro/bit-client/dist",
+    "deploy-bit": "scp -P 22 -r dist root@34.84.129.188:/home/bylicx/pro/bit-client/dist",
     "extra-pull": "git subtree pull --prefix=extra  https://github.com/bylh/extra.git master",
     "extra-push": "git subtree push --prefix=extra  https://github.com/bylh/extra.git master"
   },
