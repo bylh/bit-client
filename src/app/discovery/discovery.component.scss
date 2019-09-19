@@ -1,17 +1,28 @@
 .bylh-discovery {
   .bylh-content {
-    .seg-viewport {
-      height: 100%;
+    .list-container {
+      height: calc(100% - 60px);
+      // 推荐
+      .seg-viewport {
+        height: 100%;
 
-      ::ng-deep .cdk-virtual-scroll-content-wrapper {
-        width: 100%;
-      }
-
-      .items-container {
-        img {
+        ::ng-deep .cdk-virtual-scroll-content-wrapper {
           width: 100%;
         }
+
+        .items-container {
+          img {
+            width: 100%;
+          }
+        }
+      }
+      // 其他
+      .other {
+        height: 100%;
+        padding: 0 10px;
+        overflow: auto;
       }
     }
+
   }
 }
