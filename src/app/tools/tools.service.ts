@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import axios from '../../common/rewrite/axios';
-import { environment } from './../../environments/environment';
+import {environment} from './../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ToolsService {
 
-  constructor() { }
+  constructor() {
+  }
 
   // 获取网站类型
   async getNewsTypes() {
@@ -16,11 +18,14 @@ export class ToolsService {
         method: 'get',
         params: {}
       });
-      return res.data as Array<Object>;
+      const filters = ['知乎', '知乎日报', 'V2EX', 'Segmentfault', 'GitHub', 'ReadHub', '虎扑', '豆瓣'].reverse();
+      return (res.data as Array<Object>).sort((a, b) => filters.indexOf((b as any).title) -
+        filters.indexOf((a as any).title));
     } catch (err) {
       throw err;
     }
   }
+
   // 获取各网站头条
   async getNews(id: String) {
     try {
@@ -92,7 +97,7 @@ export class ToolsService {
       console.log('res:', res, res.data);
       // 从数组迭代出对象
       return Object.entries(res.data.available).map((item => {
-        return { coinName: item[0], count: item[1] };
+        return {coinName: item[0], count: item[1]};
       }));
     } catch (err) {
       console.log('err:', err);

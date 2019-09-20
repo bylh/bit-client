@@ -35,7 +35,7 @@
         <ng-container *ngIf="showMore">
           <nz-tag
             class="tag"
-            *ngFor="let item of newsTypes.slice(10, newsTypes.length - 1)"
+            *ngFor="let item of newsTypes.slice(10, newsTypes.length)"
             [nzChecked]="currentId === item.id"
             (click)="getNews(item.id)"
           >
