@@ -1,7 +1,24 @@
 .bylh-discovery {
   .bylh-content {
+    display: flex;
+    flex-direction: column;
+    .selector-container {
+      flex: 0 1 auto;
+      .tab-container {
+        ::ng-deep .ant-tabs-nav-scroll {
+          //overflow: auto;
+        }
+      }
+
+      .tag {
+        margin: 3px;
+        font-size: 15px;
+      }
+    }
+
     .list-container {
-      height: calc(100% - 60px);
+      height: 0;
+      flex: 1 1 auto;
       // 推荐
       .seg-viewport {
         height: 100%;
@@ -16,6 +33,7 @@
           }
         }
       }
+
       // 其他
       .other {
         height: 100%;

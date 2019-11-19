@@ -1,51 +1,92 @@
 <div [appPage]="{ sub: false }" class="bylh-discovery">
   <div class="bylh-content">
-      <mat-progress-bar
+    <mat-progress-bar
       [hidden]="isLoaded"
       mode="indeterminate"
       value="40"
       color="accent"
     ></mat-progress-bar>
-    <nz-tabset
-      [nzTabPosition]="'top'"
-      [(nzSelectedIndex)]="selectedIndex"
-      (nzSelectChange)="log([$event])"
-    >
-      <nz-tab nzTitle="推荐" (nzClick)="getSeg()">
-      </nz-tab>
-      <nz-tab
-        *ngFor="let item of newsTypes"
-        [nzTitle]="item.title"
-        (nzSelect)="getNews(item.id)"
+
+    <div class="selector-container">
+      <nz-tabset
+        *ngIf="!expand"
+        class="tab-container"
+        [nzTabBarExtraContent]="extraTemplate"
+        [nzTabPosition]="'top'"
+        [(nzSelectedIndex)]="selectedIndex"
+        [nzShowPagination]="true"
+        (nzSelectChange)="log([$event])"
       >
-      </nz-tab>
-    </nz-tabset>
+        <nz-tab nzTitle="推荐" (nzClick)="getSeg()">
+        </nz-tab>
+        <nz-tab
+          *ngFor="let item of newsTypes"
+          [nzTitle]="item.title"
+          (nzSelect)="getNews(item.id)"
+        >
+        </nz-tab>
+      </nz-tabset>
+      <ng-template #extraTemplate>
+        <nz-tag
+          class="tag"
+          [nzColor]="'geekblue'"
+          (click)="changeTabPanel(true)"
+        >
+          更多
+        </nz-tag>
+      </ng-template>
+
+      <div *ngIf="expand && newsTypes">
+        <nz-tag
+          class="tag"
+          [nzChecked]="currentId === null"
+          (click)="getSeg()">
+          推荐
+        </nz-tag>
+        <nz-tag
+          class="tag"
+          *ngFor="let item of newsTypes"
+          [nzChecked]="currentId === item.id"
+          (click)="getNews(item.id)"
+        >
+          {{ item.title }}
+        </nz-tag>
+        <nz-tag
+          class="tag"
+          [nzColor]="'lime'"
+          (click)="changeTabPanel(false)"
+        >
+          收起
+        </nz-tag>
+      </div>
+    </div>
+
     <div class="list-container">
-        <nz-list *ngIf="selectedIndex !== 0" class="other">
-            <nz-list-item *ngFor="let item of news">
-              <a matLine [href]="item.url" target="_blank">{{ item.title }}</a>
-            </nz-list-item>
-          </nz-list>
-          <cdk-virtual-scroll-viewport *ngIf="selectedIndex === 0" itemSize="72" class="seg-viewport">
-              <mat-list>
-                <ng-container *cdkVirtualFor="let seg of segs">
-                  <mat-list-item>
-                    <img
-                      matListAvatar
-                      [src]="seg.imgUrl | safe: resourceUrl"
-                      alt="..."
-                    />
-                    <a padding-bottom [href]="seg.href" target="_blank" matLine>{{
-                      seg.title
-                    }}</a>
-                    <p matLine>
-                      {{ seg.description }}
-                    </p>
-                  </mat-list-item>
-                  <mat-divider></mat-divider>
-                </ng-container>
-              </mat-list>
-            </cdk-virtual-scroll-viewport>
+      <nz-list [hidden]="selectedIndex === 0 || !news" class="other">
+        <nz-list-item *ngFor="let item of news">
+          <a matLine [href]="item.url" target="_blank">{{ item.title }}</a>
+        </nz-list-item>
+      </nz-list>
+      <cdk-virtual-scroll-viewport [hidden]="selectedIndex !== 0 || !segs" itemSize="72" class="seg-viewport">
+        <mat-list>
+          <ng-container *cdkVirtualFor="let seg of segs">
+            <mat-list-item>
+              <img
+                matListAvatar
+                [src]="seg.imgUrl | safe: resourceUrl"
+                alt="..."
+              />
+              <a padding-bottom [href]="seg.href" target="_blank" matLine>{{
+                  seg.title
+                }}</a>
+              <p matLine>
+                {{ seg.description }}
+              </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </ng-container>
+        </mat-list>
+      </cdk-virtual-scroll-viewport>
     </div>
   </div>
   <!-- <div class="pure-g items-container">

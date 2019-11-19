@@ -34,6 +34,7 @@ export class ToolsService {
         method: 'get',
         params: {id}
       });
+      console.log('res.data', res.data);
       return res.data as Array<Object>;
     } catch (err) {
       throw err;
