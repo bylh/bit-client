@@ -9,7 +9,19 @@ export class ToolsService {
 
   constructor() {
   }
-
+  getDeviceType() {
+    const ua = navigator.userAgent;
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua)) {
+      console.log('mobile');
+      return 'mobile';
+    } else if (/Chrome/i.test(ua)) {
+      console.log('chrome');
+      return 'chrome';
+    } else {
+      console.log('desktop-other');
+      return 'desktop-other';
+    }
+  }
   // 获取网站类型
   async getNewsTypes() {
     try {

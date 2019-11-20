@@ -22,7 +22,7 @@
         <nz-tab
           *ngFor="let item of newsTypes"
           [nzTitle]="item.title"
-          (nzSelect)="getNews(item.id)"
+          (nzSelect)="getNews(item)"
         >
         </nz-tab>
       </nz-tabset>
@@ -46,8 +46,8 @@
         <nz-tag
           class="tag"
           *ngFor="let item of newsTypes"
-          [nzChecked]="currentId === item.id"
-          (click)="getNews(item.id)"
+          [nzChecked]="currentId === item.ID"
+          (click)="getNews(item)"
         >
           {{ item.title }}
         </nz-tag>
@@ -62,12 +62,12 @@
     </div>
 
     <div class="list-container">
-      <nz-list [hidden]="selectedIndex === 0 || !news" class="other">
+      <nz-list *ngIf="selectedIndex !== 0 && news" class="other">
         <nz-list-item *ngFor="let item of news">
           <a matLine [href]="item.url" target="_blank">{{ item.title }}</a>
         </nz-list-item>
       </nz-list>
-      <cdk-virtual-scroll-viewport [hidden]="selectedIndex !== 0 || !segs" itemSize="72" class="seg-viewport">
+      <cdk-virtual-scroll-viewport *ngIf="selectedIndex === 0 && segs" itemSize="72" class="seg-viewport">
         <mat-list>
           <ng-container *cdkVirtualFor="let seg of segs">
             <mat-list-item>

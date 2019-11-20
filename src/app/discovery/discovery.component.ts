@@ -3,7 +3,6 @@ import {DiscoveryService} from './discovery.service';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToolsService} from '../tools/tools.service';
-
 @Component({
   selector: 'app-discovery',
   templateUrl: './discovery.component.html',
@@ -21,7 +20,7 @@ export class DiscoveryComponent implements OnInit {
   currentId: String = null;
   selectedIndex = 0;
   expand: Boolean = false;
-
+  isMobile: Boolean = false;
   constructor(
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
@@ -33,12 +32,13 @@ export class DiscoveryComponent implements OnInit {
 
   async ngOnInit() {
     console.log('disconvery init');
+    this.isMobile = this.toolsService.getDeviceType() === 'mobile';
     this.route.paramMap.subscribe((params) => {
       this.selectedId = +params.get('backId');
       console.log(this.selectedId);
     });
 
-    this.newsTypes = await this.toolsService.getNewsTypes();
+    this.newsTypes = await this.discoveryService.getNewsTypes();
     await this.getSeg();
   }
 
@@ -46,11 +46,11 @@ export class DiscoveryComponent implements OnInit {
     console.log(args);
   }
 
-  async getNews(id: String) {
+  async getNews(tag) {
     try {
       this.isLoaded = false;
-      this.currentId = id;
-      this.news = await this.toolsService.getNews(id);
+      this.currentId = tag.ID;
+      this.news = await this.discoveryService.getNews(tag.name);
       console.log('是否结束this.news', this.news, (this.news as any) === '');
     } catch (err) {
       console.log('getNews error', err);
@@ -58,8 +58,10 @@ export class DiscoveryComponent implements OnInit {
     } finally {
       this.isLoaded = true;
       if (this.expand) {
-        console.log('id: id', id);
-        this.selectedIndex = this.newsTypes.findIndex(item => (item as any).id === id) + 1;
+        this.selectedIndex = this.newsTypes.findIndex(item => (item as any).ID === tag.ID) + 1;
+        if (this.isMobile) {
+          this.expand = false;
+        }
       }
       console.log('this.index', this.selectedIndex);
     }
