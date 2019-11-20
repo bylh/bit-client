@@ -1,12 +1,13 @@
 <div [appPage]="{ sub: false }" class="bylh-discovery">
   <div class="bylh-content">
-    <mat-progress-bar
-      [hidden]="isLoaded"
-      mode="indeterminate"
-      value="40"
-      color="accent"
-    ></mat-progress-bar>
-
+    <div class="progress-bar-container">
+      <mat-progress-bar
+        [hidden]="isLoaded"
+        mode="indeterminate"
+        value="40"
+        color="accent"
+      ></mat-progress-bar>
+    </div>
     <div class="selector-container">
       <nz-tabset
         *ngIf="!expand"

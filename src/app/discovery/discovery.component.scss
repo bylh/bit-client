@@ -2,6 +2,9 @@
   .bylh-content {
     display: flex;
     flex-direction: column;
+    .progress-bar-container {
+      height: 5px;
+    }
     .selector-container {
       flex: 0 1 auto;
       .tab-container {
