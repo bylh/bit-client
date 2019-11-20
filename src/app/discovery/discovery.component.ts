@@ -3,6 +3,8 @@ import {DiscoveryService} from './discovery.service';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToolsService} from '../tools/tools.service';
+import {timer} from '../../common/utils/utils';
+
 @Component({
   selector: 'app-discovery',
   templateUrl: './discovery.component.html',
@@ -20,6 +22,7 @@ export class DiscoveryComponent implements OnInit {
   currentId: String = null;
   selectedIndex = 0;
   expand: Boolean = false;
+  showPagination: Boolean = true;
   isMobile: Boolean = false;
   constructor(
     private snackBar: MatSnackBar,
@@ -83,7 +86,13 @@ export class DiscoveryComponent implements OnInit {
     console.log('测试', this.selectedIndex);
   }
 
-  changeTabPanel(expand) {
+  async changeTabPanel(expand) {
     this.expand = expand;
+    // if (!expand) {
+    //   console.log('测试');
+    //   this.showPagination = true;
+    //   await timer(1000);
+    //   this.showPagination = false;
+    // }
   }
 }

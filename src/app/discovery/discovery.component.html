@@ -12,19 +12,34 @@
       <nz-tabset
         *ngIf="!expand"
         class="tab-container"
+        [ngClass]="{'tab-container': !expand}"
         [nzTabBarExtraContent]="extraTemplate"
         [nzTabPosition]="'top'"
         [(nzSelectedIndex)]="selectedIndex"
-        [nzShowPagination]="true"
+        [nzShowPagination]="showPagination"
         (nzSelectChange)="log([$event])"
       >
-        <nz-tab nzTitle="推荐" (nzClick)="getSeg()">
+        <nz-tab [nzTitle]="titleSlot" (nzClick)="getSeg()">
+          <ng-template #titleSlot>
+            <div
+              [title]="'推荐'"
+              class="tag-name">
+              {{ '推荐' }}
+            </div>
+          </ng-template>
         </nz-tab>
         <nz-tab
           *ngFor="let item of newsTypes"
-          [nzTitle]="item.title"
+          [nzTitle]="titleSlot"
           (nzSelect)="getNews(item)"
         >
+          <ng-template #titleSlot>
+            <div
+              [title]="item.name"
+              class="tag-name">
+              {{ item.name }}
+            </div>
+          </ng-template>
         </nz-tab>
       </nz-tabset>
       <ng-template #extraTemplate>
