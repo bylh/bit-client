@@ -55,10 +55,10 @@ export class ProfileComponent implements OnInit {
           this.profile.bgUrl = `${environment.BaseServerUrl}/bgs/${userId}-bg.jpg`;
 
           if (this.profile.signature == null) {
-            this.profile.signature = '对未来的最大慷慨，是把一切献给现在。';
+            this.profile.signature = '苍山负雪，明烛天南';
           }
           if (this.profile.introduction == null) {
-            this.profile.introduction = '每一条道路上都有出发的人， 每个人头顶上都有一方天空， 每一方天空上都有莫测的云， 每一朵云都兆示着命运。 无声的选择方向，一颗星辰或者一双眼睛， 人怎样选择世界， 世界就怎样地选择人。';
+            this.profile.introduction = '冷处偏佳,别有根芽,不是人间富贵花';
           }
         } catch (err) {
 
