@@ -1,9 +1,8 @@
-
 // import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
-import { Component, OnInit, Renderer2, Inject, ViewChild, ElementRef } from '@angular/core';
+import {Component, OnInit, Renderer2, Inject, ViewChild, ElementRef} from '@angular/core';
 import * as io from 'socket.io-client';
-import { environment } from '../../../environments/environment';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'bylh-chat',
@@ -11,7 +10,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  messageContainer
+  messageContainer;
   @ViewChild('messageContainer', {static: false}) msgConRef: ElementRef;
   @ViewChild('messageList', {static: false}) msgRef: ElementRef;
 
@@ -20,18 +19,20 @@ export class ChatComponent implements OnInit {
   roomid = '100';
   userInfo = {
     username: 'bylh' + Math.round(Math.random() * 1000)
-  }
+  };
 
   constructor(
     private render: Renderer2,
     // public dialogRef: MatDialogRef<ChatComponent>,
     // @Inject(MAT_DIALOG_DATA)
     //  public data: any
-  ) { }
+  ) {
+  }
 
   onNoClick(): void {
     // this.dialogRef.close();
   }
+
   ngOnInit() {
     this.open();
   }
@@ -57,22 +58,20 @@ export class ChatComponent implements OnInit {
   /*展示消息*/
   showMessage(data) {
 
-    let div = this.render.createElement('div');
+    const div = this.render.createElement('div');
 
     this.render.addClass(div, data.type === 0 ? 'msg-info-me' : 'msg-info-other');
-
-    let dt = this.render.createElement('dt');
+    const dt = this.render.createElement('dt');
     this.render.addClass(dt, 'nick-name');
     dt.innerHTML = data.username;
     this.render.appendChild(div, dt);
 
-    let dtt = this.render.createElement('dt');
+    const dtt = this.render.createElement('dt');
     dtt.innerHTML = data.text;
     this.render.addClass(dtt, 'text');
     this.render.appendChild(div, dtt);
 
     this.render.appendChild(this.msgRef.nativeElement, div);
-
 
 
   }
@@ -134,15 +133,17 @@ export class ChatComponent implements OnInit {
             }
             break;
         }
-      })
+      });
 
     }
 
     console.log('打开socket', this.socket.connected);
   }
+
   isOpened() {
     return this.socket != null;
   }
+
   cancel(): void {
     // this.overlayRef.dispose();
   }

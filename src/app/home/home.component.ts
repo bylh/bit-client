@@ -1,14 +1,14 @@
-import { PageTags } from './../../common/define';
-import { Location } from '@angular/common';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MatSnackBar, MatDialog } from '@angular/material';
-import { Router, ActivatedRoute } from '@angular/router';
+import {PageTags} from './../../common/define';
+import {Location} from '@angular/common';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {MatSnackBar, MatDialog} from '@angular/material';
+import {Router, ActivatedRoute} from '@angular/router';
 
-import { HomeService, Article } from './home.service';
-import { PreviewEditorComponent } from './preview-editor/preview-editor.component';
-import { AuthService } from '../auth.service';
-import { merge, Subject } from 'rxjs';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {HomeService, Article} from './home.service';
+import {PreviewEditorComponent} from './preview-editor/preview-editor.component';
+import {AuthService} from '../auth.service';
+import {merge, Subject} from 'rxjs';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export interface Tile {
   color?: string;
@@ -37,39 +37,66 @@ export class HomeComponent implements OnInit {
   currentTag: string;
 
   tiles: Tile[] = [
-    { text: '面试', url: 'https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions/Questions-and-Answers', cols: 1, rows: 1, color: 'lightgray' },
-    { text: '前端', url: 'https://segmentfault.com/channel/frontend', cols: 1, rows: 1, color: 'lightsalmon' },
-    { text: '博客', url: 'https://blob.bylh.top', cols: 1, rows: 1, color: 'lightseagreen' },
-    { text: '个人', url: 'https://me.bylh.top/', cols: 1, rows: 1, color: '#DDBDF2' },
-    { text: 'MDN', url: 'https://developer.mozilla.org/zh-CN/', cols: 1, rows: 1, color: 'lightcyan' },
-    { text: '笔记', url: 'https://keep.google.com', cols: 1, rows: 1, color: 'lightblue' },
-    { text: '翻译', url: 'https://translate.google.cn/', cols: 1, rows: 1, color: '#DDBDF1' },
-    { text: '空投', url: 'https://airdropalert.com', cols: 1, rows: 1, color: 'lightgreen' },
-    { text: '搜索', url: 'https://www.google.com', cols: 1, rows: 1, color: 'lightpink' },
-    { text: '工具', url: 'http://www.nicetool.net', cols: 1, rows: 1, color: 'lightyellow' },
+    {
+      text: '面试',
+      url: 'https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions/Questions-and-Answers',
+      cols: 1,
+      rows: 1,
+      color: 'lightgray'
+    },
+    {text: '前端', url: 'https://segmentfault.com/channel/frontend', cols: 1, rows: 1, color: 'lightsalmon'},
+    {text: '博客', url: 'https://blog.bylh.top', cols: 1, rows: 1, color: 'lightseagreen'},
+    {text: '个人', url: 'https://me.bylh.top/', cols: 1, rows: 1, color: '#DDBDF2'},
+    {text: 'MDN', url: 'https://developer.mozilla.org/zh-CN/', cols: 1, rows: 1, color: 'lightcyan'},
+    {text: '笔记', url: 'https://keep.google.com', cols: 1, rows: 1, color: 'lightblue'},
+    {text: '翻译', url: 'https://translate.google.cn/', cols: 1, rows: 1, color: '#DDBDF1'},
+    {text: '空投', url: 'https://airdropalert.com', cols: 1, rows: 1, color: 'lightgreen'},
+    {text: '搜索', url: 'https://www.google.com', cols: 1, rows: 1, color: 'lightpink'},
+    {text: '工具', url: 'http://www.nicetool.net', cols: 1, rows: 1, color: 'lightyellow'},
 
   ];
   items = [
-    { title: 'webwork使用教程', description: '', imgUrl: '../assets/thumbs/item5.jpg', link: '//www.ruanyifeng.com/blog/2018/07/web-worker.html' },
-    { title: '浏览器数据库 IndexedDB 入门教程', description: '', imgUrl: '../assets/thumbs/item2.jpg', link: '//www.ruanyifeng.com/blog/2018/07/indexeddb.html' },
-    { title: 'JavaScript 的 this 原理', description: '', imgUrl: '../assets/thumbs/item3.jpg', link: '//www.ruanyifeng.com/blog/2018/06/javascript-this.html' },
-    { title: 'purecss grid布局', description: '', imgUrl: '../assets/thumbs/item4.jpg', link: 'https://purecss.io/grids/' },
-    { title: '禁止iframe页面自动重定向跳转', description: '', imgUrl: '../assets/thumbs/item5.jpg', link: '//blog.csdn.net/WKY_CSDN/article/details/71420490' }
+    {
+      title: 'webwork使用教程',
+      description: '',
+      imgUrl: '../assets/thumbs/item5.jpg',
+      link: '//www.ruanyifeng.com/blog/2018/07/web-worker.html'
+    },
+    {
+      title: '浏览器数据库 IndexedDB 入门教程',
+      description: '',
+      imgUrl: '../assets/thumbs/item2.jpg',
+      link: '//www.ruanyifeng.com/blog/2018/07/indexeddb.html'
+    },
+    {
+      title: 'JavaScript 的 this 原理',
+      description: '',
+      imgUrl: '../assets/thumbs/item3.jpg',
+      link: '//www.ruanyifeng.com/blog/2018/06/javascript-this.html'
+    },
+    {title: 'purecss grid布局', description: '', imgUrl: '../assets/thumbs/item4.jpg', link: 'https://purecss.io/grids/'},
+    {
+      title: '禁止iframe页面自动重定向跳转',
+      description: '',
+      imgUrl: '../assets/thumbs/item5.jpg',
+      link: '//blog.csdn.net/WKY_CSDN/article/details/71420490'
+    }
   ];
+
   constructor(public homeService: HomeService,
-    public authService: AuthService,
-    public createArticleDialog: MatDialog,
-    public snackBar: MatSnackBar,
-    public location: Location,
-    public router: Router,
-    public route: ActivatedRoute) {
+              public authService: AuthService,
+              public createArticleDialog: MatDialog,
+              public snackBar: MatSnackBar,
+              public location: Location,
+              public router: Router,
+              public route: ActivatedRoute) {
     this.route.paramMap.subscribe(params => {
       console.log('backId:', params.get('backId'));
     });
     this.location.subscribe(event => {
       console.log(event);
       if (event.url === '/tabs/home') {
-        console.log(event.url, this.authService.getUserId())
+        console.log(event.url, this.authService.getUserId());
         this.refreshSubject.next(this.authService.getUserId());
       }
     });
@@ -135,20 +162,22 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
   viewArticle(id: string) {
     console.log('文章详情页');
-    this.router.navigate([`tabs/home/detail/${id}`], { queryParams: { 'articleId': id } });
+    this.router.navigate([`tabs/home/detail/${id}`], {queryParams: {'articleId': id}});
   }
 
   changeTag(tag: string = null) {
     console.log('tagEvent', tag);
     this.currentTag = tag;
   }
+
   filterArticles(articles: Array<Article>, tag: string) {
     if (tag == null) {
       return articles;
     }
-    let items = articles.filter((article) => article.tags != null && article.tags.indexOf(tag) !== -1)
+    let items = articles.filter((article) => article.tags != null && article.tags.indexOf(tag) !== -1);
     return items;
   }
 
