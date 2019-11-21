@@ -29,7 +29,8 @@ export class DiscoveryService {
         url: `${environment.GoServerUrl}/newsTags`,
         method: 'get',
         params: {},
-        withCredentials: false // https://segmentfault.com/a/1190000011811117  https://enable-cors.org/server_nginx.html
+        // 设置跨域为任意的时候需要设置为false, 具体见如下链接
+        // withCredentials: false // https://segmentfault.com/a/1190000011811117  https://enable-cors.org/server_nginx.html
       });
       const filters = ['ZhiHu', 'ZHDaily', 'V2EX', 'Segmentfault', 'GitHub', 'ReadHub', 'HuPu', 'DouBan'].reverse();
       return (res.data.data as Array<Object>).sort((a, b) => filters.indexOf((b as any).title) -
@@ -46,7 +47,7 @@ export class DiscoveryService {
         url: `${environment.GoServerUrl}/news`,
         method: 'get',
         params: {tag: name},
-        withCredentials: false
+        // withCredentials: false
       });
       console.log('res.data', res.data);
       return res.data.data as Array<Object>;
